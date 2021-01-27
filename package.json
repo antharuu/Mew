@@ -1,0 +1,14 @@
+{
+  "name": "mew",
+  "version": "1.0.0",
+  "description": "html preprocessor",
+  "main": "src/mew.js",
+  "scripts": {
+    "dev": "nodemon src/mew.js"
+  },
+  "author": "antharuu",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.18.0"
+  }
+}

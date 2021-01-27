@@ -1,0 +1,8 @@
+doctype
+
+h1 Hello world
+  small Je suis une patate!
+
+.container
+  h2 Je suis un fichier
+    code .mew
