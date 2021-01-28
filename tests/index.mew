@@ -1,8 +1,9 @@
 doctype
 
-h1 Hello world
+h1.title.main-title Hello world
   small Je suis une patate!
 
 .container
   h2 Je suis un fichier
     code .mew
+  span#banana.mini#lol Je suis une banane!
