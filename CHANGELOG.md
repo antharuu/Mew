@@ -1,3 +1,7 @@
+### 0.1.0
+
+- Complete rewriting in [Typescript](https://www.typescriptlang.org) and multiple files.
+
 ### 0.0.2
 
 - Add custom attributes.

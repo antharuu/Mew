@@ -4,12 +4,14 @@
   "description": "html preprocessor",
   "main": "src/mew.js",
   "scripts": {
-    "dev": "nodemon src/mew.js"
+    "dev_old": "nodemon src/mew_old.js",
+    "dev": "nodemon src/Mew.ts"
   },
   "author": "antharuu",
   "license": "MIT",
   "dependencies": {
     "pretty": "^2.0.0",
+    "ts-node": "^9.1.1",
     "webpack": "^5.18.0"
   }
 }

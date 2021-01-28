@@ -20,7 +20,7 @@ html
         section#main.col-6
           h2 Enjoy the new MEW preprocessor!
           p check here
-            a(href="#") Mew on Github
+            a(href="#") Mew_old on Github
 ```
 To this:
 
@@ -43,7 +43,7 @@ To this:
           </div>
           <section id="main" class="col-6">
             <h2>Enjoy the new MEW preprocessor!</h2>
-            <p>check here<a href="#">Mew on Github</p>
+            <p>check here<a href="#">Mew_old on Github</p>
           </section>
         </div>
       </div>
