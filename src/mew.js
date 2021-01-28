@@ -1,6 +1,8 @@
 const {['log']: cl} = console,
     ds = "/",
-    fs = require("fs");
+    fs = require("fs"),
+    pretty = require('pretty');
+
 
 class Parser {
     lines;
@@ -14,7 +16,7 @@ class Parser {
         this.purgeLines();
         this.getIndentation();
         this.blocks = this.defineBlockOf(this.lines)
-        this.finalCode = this.generateCodeOf(this.blocks)
+        this.finalCode = pretty(this.generateCodeOf(this.blocks))
     }
 
     getFinalCode = () => this.finalCode;
@@ -51,6 +53,12 @@ class Parser {
             if (ignoredLines === 0) {
                 ignoredLines++;
                 let words = line.trim().split(" ");
+                let attrib = {};
+                if (words[0].includes("(")) {
+                    attrib = this.getDefinedAttributesFrom(words)
+                    line = this.clearLineAttr(line)
+                    words = line.trim().split(" ");
+                }
                 let selector = this.splitPartsSelector(words);
                 let tag = selector[0]
                 if (tag.length === 0) tag = "div"
@@ -60,7 +68,6 @@ class Parser {
                 let blockEnded = false;
                 let currBlock = [];
                 selector.shift()
-                let currAttributes = this.getAttributesFrom(selector)
                 lines.forEach(l => {
                     if (checkedLines > currentLine && !blockEnded) {
                         const i = l.length - l.trimStart().length;
@@ -75,7 +82,7 @@ class Parser {
                 block = {
                     tag: tag,
                     content: content.join(" "),
-                    attributes: currAttributes,
+                    attributes: {...attrib, ...this.getAttributesFrom(selector)},
                     block: this.defineBlockOf(currBlock) // <- Recursive
                 }
                 blocks.push(block)
@@ -119,7 +126,7 @@ class Parser {
     }
 
     autoClosableTags = [
-        "a", "doctype", "br", "hr"
+        "a", "doctype", "br", "hr", "meta"
     ]
 
     generateCodeOf = (blocks, i = 0) => {
@@ -138,7 +145,7 @@ class Parser {
                 finalCode += "\""
             }
             finalCode += ">";
-            finalCode += block.content.trim() + ""
+            finalCode += block.content.trim()
             finalCode += this.generateCodeOf(block.block, i + 1).trim()
             if (!this.autoClosableTags.includes(block.tag)) {
                 finalCode += "</" + block.tag + ">";
@@ -147,6 +154,45 @@ class Parser {
         })
 
         return finalCode;
+    }
+
+    getDefinedAttributesFrom(words) {
+        words = words.join(" ")
+        let attrs = {}
+        let start = words.indexOf("(") + 1
+        words = words.substr(start);
+        let close = 0;
+        let block = 0;
+        let closed = false;
+        for (let i = 0; i < words.length; i++) {
+            if (!closed) {
+                const l = words.charAt(i);
+                if (l === "(") block++;
+                if (l === ")") {
+                    if (block === 0) {
+                        close = i
+                        closed = true;
+                    }
+                    block--;
+                }
+            }
+        }
+        let attributes = words.substr(0, close);
+        const regex = /([^\s=]+)="([^"\\]*(?:\\[\w\W][^"\\]*)*)"/g;
+        let m, results = {};
+        while ((m = regex.exec(attributes))) {
+            results[m[1]] = [m[2]];
+        }
+        return results;
+    }
+
+    clearLineAttr(line) {
+        let start = line.indexOf("(")
+        let end = line.lastIndexOf(")")
+        let pre = line.substr(0, start)
+        let fix = line.substr(end + 1)
+        line = pre + fix;
+        return line;
     }
 }
 

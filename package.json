@@ -9,6 +9,7 @@
   "author": "antharuu",
   "license": "MIT",
   "dependencies": {
+    "pretty": "^2.0.0",
     "webpack": "^5.18.0"
   }
 }

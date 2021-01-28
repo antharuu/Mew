@@ -1,9 +1,15 @@
 doctype
-
-h1.title.main-title Hello world
-  small Je suis une patate!
-
-.container
-  h2 Je suis un fichier
-    code .mew
-  span#banana.mini#lol Je suis une banane!
+html
+  head
+    meta(charset="utf-8")
+    link(rel="stylesheet" href="css/main.css")
+    title Je suis une super page
+  body
+    .container
+      .row.justify-contents-center
+        .col-6
+          h1 Hello world
+        section#main.col-6
+          h2 Enjoy the new MEW preprocessor!
+          p check here
+            a(href="#") Mew on Github

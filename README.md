@@ -1,3 +1,30 @@
+# MEW
+
+Currently unusable !! I work on it.
+
+---
+
+### Now able to transform this:
+```mew
+doctype
+html
+  head
+    meta(charset="utf-8")
+    link(rel="stylesheet" href="css/main.css")
+    title I'm a super page!
+  body
+    .container
+      .row.justify-contents-center
+        .col-6
+          h1 Hello world
+        section#main.col-6
+          h2 Enjoy the new MEW preprocessor!
+          p check here
+            a(href="#") Mew on Github
+```
+To this:
+
+```html
 <doctype>
   <html>
 
@@ -5,7 +32,7 @@
       <meta charset="utf-8">
       <link rel="stylesheet" href="css/main.css">
       </link>
-      <title>Je suis une super page</title>
+      <title>I'm a super page!</title>
     </head>
 
     <body>
@@ -23,3 +50,4 @@
     </body>
 
   </html>
+```
