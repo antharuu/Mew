@@ -1,4 +1,6 @@
-# MEW
+<p align="center">
+  <img width="200" src="https://i.postimg.cc/XJZbJQRp/Logo.png" alt="Bubblegum icon">
+</p>
 
 Now usable and stable
 
