@@ -21,4 +21,13 @@ export class BlockElement {
         this.block = optionsExport.block;
         this.line = optionsExport.line;
     }
+
+    attrReplace(attr: string, searchString: string, replaceString: string) {
+        let returned = []
+        this.attributes[attr].forEach(c => {
+            c = c.replace(searchString, replaceString)
+            returned.push(c)
+        })
+        this.attributes[attr] = returned;
+    }
 }

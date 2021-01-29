@@ -7,7 +7,7 @@ Now usable and stable
 Todo before 1.0:
 - [x] A similar base to PUG 
 - [x] Add a preset system
-- [ ] Customization of presets
+- [x] Custom presets
 - [ ] Adding variables
 - [ ] Adding mixins
 - [ ] Adding loops

@@ -1,4 +1,5 @@
 import {BlockElement} from "./Logic/BlockElement";
+import {Preset} from "./Logic/Preset";
 
 // noinspection JSUnusedLocalSymbols
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
@@ -9,29 +10,29 @@ const getAttributeBlockContent = (attrName: string, rBlock: BlockElement, oldBlo
 }
 
 export const Presets = [
-    {
-        tag: "doctype",
-        output: new BlockElement({tag: "!DOCTYPE", attributes: {html: null}})
-    },
-    {
-        tag: "charset",
-        output: new BlockElement({tag: "meta"}),
-        callback: (rBlock: BlockElement, oldBlock: BlockElement) => getAttributeBlockContent("charset", rBlock, oldBlock)
-    },
-    {
-        tag: "css",
-        output: new BlockElement({
+    new Preset(
+        "doctype",
+        new BlockElement({tag: "!DOCTYPE", attributes: {html: null}})
+    ),
+    new Preset(
+        "charset",
+        new BlockElement({tag: "meta"}),
+        (rBlock: BlockElement, oldBlock: BlockElement) => getAttributeBlockContent("charset", rBlock, oldBlock)
+    ),
+    new Preset(
+        "css",
+        new BlockElement({
             tag: "link",
             attributes: {rel: ["stylesheet"]}
         }),
-        callback: (rBlock: BlockElement, oldBlock: BlockElement) => getAttributeBlockContent("href", rBlock, oldBlock)
-    },
-    {
-        tag: "a",
-        output: new BlockElement({
+        (rBlock: BlockElement, oldBlock: BlockElement) => getAttributeBlockContent("href", rBlock, oldBlock)
+    ),
+    new Preset(
+        "a",
+        new BlockElement({
             tag: "a",
         }),
-        callback: (rBlock: BlockElement, oldBlock: BlockElement) => {
+        (rBlock: BlockElement, oldBlock: BlockElement) => {
             const c = oldBlock.content.split(" ");
             if (c.length < 2) throw "A link needs at least 2 arguments"
             rBlock.attributes["href"] = [c[0]]
@@ -39,13 +40,13 @@ export const Presets = [
             rBlock.content = c.join(" ")
             return rBlock
         }
-    },
-    {
-        tag: "img",
-        output: new BlockElement({
+    ),
+    new Preset(
+        "img",
+        new BlockElement({
             tag: "img",
         }),
-        callback: (rBlock: BlockElement, oldBlock: BlockElement) => {
+        (rBlock: BlockElement, oldBlock: BlockElement) => {
             const c = oldBlock.content.split(" ");
             rBlock.attributes["src"] = [c[0]]
             if (c.length >= 2) {
@@ -54,5 +55,26 @@ export const Presets = [
             }
             return rBlock
         }
-    }
+    ),
+    new Preset(
+        "viewport",
+        new BlockElement({
+            tag: "meta",
+            attributes: {
+                name: "viewport",
+                content: [
+                    "width=device-width,",
+                    "user-scalable=no,",
+                    "initial-scale=$size$,",
+                    "maximum-scale=$size$,",
+                    "minimum-scale=$size$",
+                ]
+            },
+        }),
+        (rBlock: BlockElement, oldBlock: BlockElement) => {
+            if (oldBlock.content === "") oldBlock.content = "1.0";
+            rBlock.attrReplace("content", "$size$", oldBlock.content)
+            return rBlock
+        }
+    )
 ]

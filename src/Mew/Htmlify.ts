@@ -1,5 +1,6 @@
 import {BlockElement} from "./Logic/BlockElement";
 import {Presets} from "./Presets";
+import {Preset} from "./Logic/Preset";
 
 // noinspection JSUnusedLocalSymbols
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
@@ -12,9 +13,10 @@ const autoClosableTags = [
 ]
 
 
-function checkPresets(block: BlockElement) {
+function checkPresets(block: BlockElement, userPresets: Preset[]) {
+    let presets = [...Presets, ...userPresets]
     let rBlock: BlockElement = block;
-    Presets.forEach(preset => {
+    presets.forEach(preset => {
         if (block.tag === preset.tag) {
             const out = preset.output;
             rBlock = new BlockElement(out)
@@ -24,18 +26,18 @@ function checkPresets(block: BlockElement) {
     return rBlock;
 }
 
-export const Htmlify = (blocks: Array<BlockElement>, i: number = 0) => {
+export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options) => {
     let finalCode = "";
-    const indent = "    ".repeat(i);
     blocks.forEach(block => {
 
         if (block.tag !== "|") {
-            block = checkPresets(block)
-            finalCode += indent + "<" + block.tag;
-            for (const [attribute, value] of Object.entries(block.attributes)) {
+            block = checkPresets(block, options.presets)
+            finalCode += "<" + block.tag;
+            for (let [attribute, value] of Object.entries(block.attributes)) {
                 if (value !== null) {
                     finalCode += " " + attribute + "=\""
                     let v = 0;
+                    if (typeof value === "string") value = [value]
                     value.forEach(val => {
                         if (v !== 0) finalCode += " ";
                         finalCode += val;
@@ -49,9 +51,9 @@ export const Htmlify = (blocks: Array<BlockElement>, i: number = 0) => {
             if (!autoClosableTags.includes(block.tag)) finalCode += ">";
             else finalCode += " />";
             finalCode += block.content.trim()
-            finalCode += Htmlify(block.block, i + 1).trim() // <- Recursive
+            finalCode += Htmlify(block.block, i + 1, options).trim() // <- Recursive
             if (!autoClosableTags.includes(block.tag)) finalCode += "</" + block.tag + ">";
-        }else{
+        } else {
             finalCode += block.content
         }
     })

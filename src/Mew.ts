@@ -1,5 +1,7 @@
 import * as fs from "fs";
 import {ParseFiles} from "./Mew/ParseFiles"
+import {BlockElement} from "./Mew/Logic/BlockElement";
+import {Preset} from "./Mew/Logic/Preset";
 
 const ds = "/"; // Directory separator
 
@@ -10,8 +12,9 @@ const ds = "/"; // Directory separator
 const Mew = (options) => {
     const params = {
         entry: "./src",     // Entry folder
-        output: "./dist",   // output folder
+        output: "./dist",   // Output folder
         encode: "utf-8",    // File encode
+        presets: [],        // Custom presets
         ...options
     }
 
@@ -22,7 +25,10 @@ const Mew = (options) => {
     params.files.forEach((file) => new ParseFiles(
         params.entry + ds + file,
         params.output,
-        params.encode
+        params.encode,
+        {
+            presets: params.presets
+        }
     ))
 }
 
@@ -31,5 +37,6 @@ const Mew = (options) => {
  * TODO: remove this at the end
  **/
 Mew({
-    entry: "./tests"
+    entry: "./tests",
+    presets: []
 })

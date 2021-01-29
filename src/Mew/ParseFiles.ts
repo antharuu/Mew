@@ -11,10 +11,13 @@ export class ParseFiles {
     constructor(
         file: string,                       // Entry folder
         output: string,                     // output folder
-        encode: BufferEncoding = "utf-8"    // File encode
+        encode: BufferEncoding = "utf-8",   // File encode
+        options: {
+            presets: []
+        }
     ) {
         // Parsing and saving the code
-        const M = new Parser(fs.readFileSync(file, encode));
+        const M = new Parser(fs.readFileSync(file, encode), options);
         const finalCode = M.getFinalCode();
 
         let fn = file.split(".");

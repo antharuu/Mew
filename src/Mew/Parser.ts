@@ -1,6 +1,7 @@
 import * as pretty from "pretty"
 import {Htmlify} from "./Htmlify"
 import {BlockElement} from "./Logic/BlockElement";
+import {Preset} from "./Logic/Preset";
 
 // noinspection JSUnusedLocalSymbols
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
@@ -13,15 +14,17 @@ const customAttributes = [
 
 export class Parser {
     private lines: Array<string>; // Lines to work on
-    private blocks: Array<BlockElement>; // Blocks of logic
+    blocks: Array<BlockElement>; // Blocks of logic
 
-    private finalCode: string; // Code to export
+    finalCode: string; // Code to export
 
-    constructor(inputCode) {
+    constructor(inputCode, options = {
+        presets: []
+    }) {
         this.lines = inputCode.split("\n")
         this.purgeLines();
         this.blocks = this.defineBlockOf(this.lines)
-        this.finalCode = pretty(Htmlify(this.blocks))
+        this.finalCode = pretty(Htmlify(this.blocks, 0, options))
     }
 
     /**

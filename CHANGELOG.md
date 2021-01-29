@@ -1,3 +1,10 @@
+### 0.1.2
+
+- Custom presets
+- Preset is now a class
+- BlockElements now have the function "attrReplace".
+- Attributes are no longer necessarily `Arrays`, but can now be `strings`.
+
 ### 0.1.1
 
 - Add presets
