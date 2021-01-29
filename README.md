@@ -1,53 +1,56 @@
 # MEW
 
-Currently unusable !! I work on it.
+Currently, unusable !! I work on it.
 
 ---
 
 ### Now able to transform this:
-```mew
+```pug
 doctype
 html
   head
-    meta(charset="utf-8")
-    link(rel="stylesheet" href="css/main.css")
-    title I'm a super page!
+    charset utf-8
+    css css/main.css
+    title Je suis une super page, enfin je crois
   body
     .container
       .row.justify-contents-center
         .col-6
           h1 Hello world
+          div#maSuperImage
+            img https://unsplash.com/photos/_Kbydj4K7W8 Cat super image!
         section#main.col-6
           h2 Enjoy the new MEW preprocessor!
           p check here
-            a(href="#") Mew_old on Github
+            a # Mew on Github
+            |  if you want
 ```
 To this:
 
 ```html
-<doctype>
-  <html>
+<!DOCTYPE html />
+<html>
 
-    <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="css/main.css">
-      </link>
-      <title>I'm a super page!</title>
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Je suis une super page, enfin je crois</title>
+</head>
 
-    <body>
-      <div class="container">
-        <div class="row justify-contents-center">
-          <div class="col-6">
+<body>
+<div class="container">
+    <div class="row justify-contents-center">
+        <div class="col-6">
             <h1>Hello world</h1>
-          </div>
-          <section id="main" class="col-6">
-            <h2>Enjoy the new MEW preprocessor!</h2>
-            <p>check here<a href="#">Mew_old on Github</p>
-          </section>
+            <div id="maSuperImage"><img src="https://unsplash.com/photos/_Kbydj4K7W8" alt="Cat super image!" /></div>
         </div>
-      </div>
-    </body>
+        <section id="main" class="col-6">
+            <h2>Enjoy the new MEW preprocessor!</h2>
+            <p>check here<a href="#">Mew on Github</a> if you want</p>
+        </section>
+    </div>
+</div>
+</body>
 
-  </html>
+</html>
 ```

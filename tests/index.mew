@@ -1,15 +1,18 @@
 doctype
 html
   head
-    meta(charset="utf-8")
-    link(rel="stylesheet" href="css/main.css")
-    title Je suis une super page
+    charset utf-8
+    css css/main.css
+    title Je suis une super page, enfin je crois
   body
     .container
       .row.justify-contents-center
         .col-6
           h1 Hello world
+          div#maSuperImage
+            img https://unsplash.com/photos/_Kbydj4K7W8 Cat super image!
         section#main.col-6
           h2 Enjoy the new MEW preprocessor!
           p check here
-            a(href="#") Mew on Github
+            a # Mew on Github
+            |  if you want

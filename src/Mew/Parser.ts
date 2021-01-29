@@ -63,7 +63,7 @@ export class Parser {
                 }
                 attrib = {...attrib, ...this.getAttributesFrom(line)}
 
-                let tag = line.trim().split(/(^[-_@\w]+)/g)[1] ?? "div"
+                let tag = line.trim().split(/(^[-_@|\w]+)/g)[1] ?? "div"
 
                 let content = line.trim().split(" ");
                 content.shift()
