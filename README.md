@@ -1,6 +1,18 @@
 # MEW
 
-Currently, unusable !! I work on it.
+Now usable and stable
+
+Todo before 1.0:
+- [x] A similar base to PUG 
+- [x] Add a preset system
+- [ ] Customization of presets
+- [ ] Adding variables
+- [ ] Adding mixins
+- [ ] Adding loops
+- [ ] Adding conditions
+- [ ] Adding includes
+
+...And probably a lot of other things
 
 ---
 
