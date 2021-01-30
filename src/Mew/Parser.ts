@@ -1,10 +1,6 @@
-import * as pretty from "pretty"
+const pretty = require("pretty")
 import {Htmlify} from "./Htmlify"
 import {BlockElement} from "./Logic/BlockElement";
-import {Preset} from "./Logic/Preset";
-
-// noinspection JSUnusedLocalSymbols
-const {['log']: cl} = console; // Personal shortcut TODO: remove later
 
 const customAttributes = [
     {name: "class", symbol: "."},
@@ -13,14 +9,12 @@ const customAttributes = [
 ]
 
 export class Parser {
-    private lines: Array<string>; // Lines to work on
-    blocks: Array<BlockElement>; // Blocks of logic
+    private lines: string[]; // Lines to work on
+    blocks: BlockElement[]; // Blocks of logic
 
     finalCode: string; // Code to export
 
-    constructor(inputCode, options = {
-        presets: []
-    }) {
+    constructor(inputCode: string, options: Object) {
         this.lines = inputCode.split("\n")
         this.purgeLines();
         this.blocks = this.defineBlockOf(this.lines)
@@ -68,12 +62,12 @@ export class Parser {
 
                 let tag = line.trim().split(/(^[-_@|\w]+)/g)[1] ?? "div"
 
-                let content = line.trim().split(" ");
+                let content: string[] = line.trim().split(" ");
                 content.shift()
 
                 let checkedLines = 0;
                 let blockEnded = false;
-                const currBlock = [];
+                const currBlock: string[] = [];
 
                 lines.forEach(l => {
                     if (checkedLines > currentLine && !blockEnded) {
@@ -131,9 +125,10 @@ export class Parser {
     getDefinedAttributesFrom = (words: string[]): {} => {
         let line: string = words.join(" ")
         const regex = /(?<attr>[\w]+)="(?<value>[^"\\]*(?:\\[\w\W][^"\\]*)*)"/g;
-        let m, results = {};
+        let m: RegExpExecArray, results: Object = {};
         while ((m = regex.exec(line)) !== null) {
             if (m.index === regex.lastIndex) regex.lastIndex++;
+            // @ts-ignore
             results[m[1]] = [m[2]];
         }
         return results
@@ -152,7 +147,7 @@ export class Parser {
         })
 
         const regex = new RegExp('([' + attrsSymboles + '][-_/\\w]+)', 'g');
-        let m, results = {};
+        let m: RegExpExecArray, results = {};
         while ((m = regex.exec(line)) !== null) {
             if (m.index === regex.lastIndex) regex.lastIndex++;
             customAttributes.forEach(attr => {
@@ -162,18 +157,15 @@ export class Parser {
         return results
     };
 
-    /**
-     * Add attributes from given parameters
-     * @param attrs
-     * @param attr
-     * @param symbol
-     * @param name
-     */
-    addAttrFrom = (attrs, attr, symbol, name) => {
+    addAttrFrom = (attrs: Object, attr: string, symbol: string, name: string) => {
+        console.log(attr)
         if (attr.charAt(0) === symbol) {
             attr = attr.substring(1)
+            // @ts-ignore
             if (attrs[name] ?? false) attrs[name].push(attr)
-            else attrs[name] = [attr]
+            else { // @ts-ignore
+                attrs[name] = [attr]
+            }
         }
         return attrs;
     }

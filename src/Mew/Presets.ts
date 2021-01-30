@@ -1,10 +1,8 @@
 import {BlockElement} from "./Logic/BlockElement";
 import {Preset} from "./Logic/Preset";
 
-// noinspection JSUnusedLocalSymbols
-const {['log']: cl} = console; // Personal shortcut TODO: remove later
-
 const getAttributeBlockContent = (attrName: string, rBlock: BlockElement, oldBlock: BlockElement) => {
+    // @ts-ignore
     rBlock.attributes[attrName] = [oldBlock.content]
     return rBlock
 }
@@ -35,6 +33,7 @@ export const Presets = [
         (rBlock: BlockElement, oldBlock: BlockElement) => {
             const c = oldBlock.content.split(" ");
             if (c.length < 2) throw "A link needs at least 2 arguments"
+            // @ts-ignore
             rBlock.attributes["href"] = [c[0]]
             c.shift()
             rBlock.content = c.join(" ")
@@ -48,9 +47,11 @@ export const Presets = [
         }),
         (rBlock: BlockElement, oldBlock: BlockElement) => {
             const c = oldBlock.content.split(" ");
+            // @ts-ignore
             rBlock.attributes["src"] = [c[0]]
             if (c.length >= 2) {
                 c.shift()
+                // @ts-ignore
                 rBlock.attributes["alt"] = [c.join(" ")]
             }
             return rBlock

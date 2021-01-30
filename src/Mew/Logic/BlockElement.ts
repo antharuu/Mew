@@ -6,14 +6,21 @@ export class BlockElement {
     line: string
 
     constructor(options: Object = {}) {
-        let optionsExport = {
+        let optionsExport: {
+            line: string;
+            attributes: {};
+            block: BlockElement[];
+            tag: string;
+            content: string;
+        };
+        optionsExport = {
             tag: "div",
             content: "",
             attributes: {},
             block: [],
             line: "",
             ...options
-        }
+        };
 
         this.tag = optionsExport.tag;
         this.content = optionsExport.content;
@@ -23,11 +30,13 @@ export class BlockElement {
     }
 
     attrReplace(attr: string, searchString: string, replaceString: string) {
-        let returned = []
+        let returned: string[] = []
+        // @ts-ignore
         this.attributes[attr].forEach(c => {
             c = c.replace(searchString, replaceString)
             returned.push(c)
         })
+        // @ts-ignore
         this.attributes[attr] = returned;
     }
 }

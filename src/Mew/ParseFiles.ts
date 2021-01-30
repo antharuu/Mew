@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import {Parser} from "./Parser";
+import {Preset} from "./Logic/Preset";
 
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
 const ds = "/"; // Directory separator
@@ -12,9 +13,7 @@ export class ParseFiles {
         file: string,                       // Entry folder
         output: string,                     // output folder
         encode: BufferEncoding = "utf-8",   // File encode
-        options: {
-            presets: []
-        }
+        options: { variables: Object; presets: Preset[] }
     ) {
         // Parsing and saving the code
         const M = new Parser(fs.readFileSync(file, encode), options);

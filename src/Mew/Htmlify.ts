@@ -26,11 +26,12 @@ function checkPresets(block: BlockElement, userPresets: Preset[]) {
     return rBlock;
 }
 
-export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options) => {
+export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options: Object) => {
     let finalCode = "";
     blocks.forEach(block => {
 
         if (block.tag !== "|") {
+            // @ts-ignore
             block = checkPresets(block, options.presets)
             finalCode += "<" + block.tag;
             for (let [attribute, value] of Object.entries(block.attributes)) {
@@ -38,7 +39,7 @@ export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options) => 
                     finalCode += " " + attribute + "=\""
                     let v = 0;
                     if (typeof value === "string") value = [value]
-                    value.forEach(val => {
+                    value.forEach((val: string[]) => {
                         if (v !== 0) finalCode += " ";
                         finalCode += val;
                         v++;
