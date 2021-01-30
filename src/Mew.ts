@@ -51,6 +51,7 @@ Mew({
     entry: "./tests",
     presets: [],
     variables: {
-        bonjour: "Bonjour le monde!"
+        bonjour: "Bonjour le monde!",
+        github: "https://github.com/antharuu/Mew"
     }
 })

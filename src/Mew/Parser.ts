@@ -158,7 +158,6 @@ export class Parser {
     };
 
     addAttrFrom = (attrs: Object, attr: string, symbol: string, name: string) => {
-        console.log(attr)
         if (attr.charAt(0) === symbol) {
             attr = attr.substring(1)
             // @ts-ignore

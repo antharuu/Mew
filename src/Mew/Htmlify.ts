@@ -5,13 +5,14 @@ import {Preset} from "./Logic/Preset";
 // noinspection JSUnusedLocalSymbols
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
 
+let variables: Object = {};
+
 const autoClosableTags = [
     "!DOCTYPE", "br", "hr", "meta", "area",
     "base", "col", "embed", "img", "input", "link",
     "param", "source", "track", "wbr", "command",
     "keygen", "menuitem"
 ]
-
 
 function checkPresets(block: BlockElement, userPresets: Preset[]) {
     let presets = [...Presets, ...userPresets]
@@ -26,7 +27,20 @@ function checkPresets(block: BlockElement, userPresets: Preset[]) {
     return rBlock;
 }
 
+function checkVariables(str: string) {
+    for (const [key, value] of Object.entries(variables)) {
+        const regex = new RegExp("{{([ ]+)?([" + key + "]+)([ ]+)?}}", "g")
+        // @ts-ignore
+        const value = variables[key] ?? undefined;
+        str = str.replace(regex, value);
+    }
+    return str;
+}
+
 export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options: Object) => {
+    // @ts-ignore
+    variables = {...options.variables}
+
     let finalCode = "";
     blocks.forEach(block => {
 
@@ -59,6 +73,7 @@ export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options: Obj
         }
     })
 
+    finalCode = checkVariables(finalCode)
     return finalCode;
 };
 

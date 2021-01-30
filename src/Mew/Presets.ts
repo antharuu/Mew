@@ -19,10 +19,7 @@ export const Presets = [
     ),
     new Preset(
         "css",
-        new BlockElement({
-            tag: "link",
-            attributes: {rel: ["stylesheet"]}
-        }),
+        new BlockElement({tag: "link", attributes: {rel: ["stylesheet"]}}),
         (rBlock: BlockElement, oldBlock: BlockElement) => getAttributeBlockContent("href", rBlock, oldBlock)
     ),
     new Preset(
@@ -33,6 +30,7 @@ export const Presets = [
         (rBlock: BlockElement, oldBlock: BlockElement) => {
             const c = oldBlock.content.split(" ");
             if (c.length < 2) throw "A link needs at least 2 arguments"
+            rBlock.attributes = oldBlock.attributes
             // @ts-ignore
             rBlock.attributes["href"] = [c[0]]
             c.shift()
@@ -46,7 +44,8 @@ export const Presets = [
             tag: "img",
         }),
         (rBlock: BlockElement, oldBlock: BlockElement) => {
-            const c = oldBlock.content.split(" ");
+            const c: string[] = oldBlock.content.split(" ");
+            rBlock.attributes = oldBlock.attributes
             // @ts-ignore
             rBlock.attributes["src"] = [c[0]]
             if (c.length >= 2) {
