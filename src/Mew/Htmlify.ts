@@ -1,11 +1,10 @@
 import {BlockElement} from "./Logic/BlockElement";
 import {Presets} from "./Presets";
 import {Preset} from "./Logic/Preset";
+import {Variables} from "./Variables";
 
 // noinspection JSUnusedLocalSymbols
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
-
-let variables: Object = {};
 
 const autoClosableTags = [
     "!DOCTYPE", "br", "hr", "meta", "area",
@@ -27,20 +26,7 @@ function checkPresets(block: BlockElement, userPresets: Preset[]) {
     return rBlock;
 }
 
-function checkVariables(str: string) {
-    for (const [key, value] of Object.entries(variables)) {
-        const regex = new RegExp("{{([ ]+)?([" + key + "]+)([ ]+)?}}", "g")
-        // @ts-ignore
-        const value = variables[key] ?? undefined;
-        str = str.replace(regex, value);
-    }
-    return str;
-}
-
 export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options: Object) => {
-    // @ts-ignore
-    variables = {...options.variables}
-
     let finalCode = "";
     blocks.forEach(block => {
 
@@ -63,8 +49,7 @@ export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options: Obj
                     finalCode += " " + attribute
                 }
             }
-            if (!autoClosableTags.includes(block.tag)) finalCode += ">";
-            else finalCode += " />";
+            finalCode += ">";
             finalCode += block.content.trim()
             finalCode += Htmlify(block.block, i + 1, options).trim() // <- Recursive
             if (!autoClosableTags.includes(block.tag)) finalCode += "</" + block.tag + ">";
@@ -72,8 +57,6 @@ export const Htmlify = (blocks: Array<BlockElement>, i: number = 0, options: Obj
             finalCode += block.content
         }
     })
-
-    finalCode = checkVariables(finalCode)
     return finalCode;
 };
 

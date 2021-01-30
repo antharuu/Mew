@@ -1,23 +1,33 @@
+### 0.1.4
+
+- Variables can now be declared and modified directly in the Mew file.
+- The Variables code is now in the Variables file.
+
+### 0.1.3
+
+- Adding variables.
+- Added "noImplicitAny" rule for script types.
+
 ### 0.1.2
 
-- Custom presets
-- Preset is now a class
+- Custom presets.
+- Preset is now a class.
 - BlockElements now have the function "attrReplace".
 - Attributes are no longer necessarily `Arrays`, but can now be `strings`.
 
 ### 0.1.1
 
-- Add presets
-- Add custom attributes
-- Add more autoclosable tags
+- Add presets.
+- Add custom attributes.
+- Add more autoclosable tags.
 
 ##### New Presets
 
-- from `doctype` to  `<!DOCTYPE html>`
-- from `charset utf-8` to  `<meta charset="utf-8" />`
-- from `css css/main.css` to  `<link rel="stylesheet" href="css/main.css" />`
-- from `a http://superLink.com My super link !` to  `<a href="http://superLink.com">My super link !</a>`
-- from `img superImage.png My super image !` to  `<img src="superImage.png" alt="My super image !" />`
+- from `doctype` to  `<!DOCTYPE html>`.
+- from `charset utf-8` to  `<meta charset="utf-8" />`.
+- from `css css/main.css` to  `<link rel="stylesheet" href="css/main.css" />`.
+- from `a http://superLink.com My super link !` to  `<a href="http://superLink.com">My super link !</a>`.
+- from `img superImage.png My super image !` to  `<img src="superImage.png" alt="My super image !" />`.
 
 ### 0.1.0
 

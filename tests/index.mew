@@ -1,11 +1,14 @@
+$myCss = "css/main.css"
+
 doctype
 html
   head
     viewport
     charset utf-8
-    css css/main.css
+    css {{myCss}}
     title {{bonjour}}
   body
+    $bonjour = "Hello world"
     .container
       .row.justify-contents-center
         .col-6

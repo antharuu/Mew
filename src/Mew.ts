@@ -28,7 +28,7 @@ const Mew = (options: Object) => {
         ...options          // User options
     };
 
-    // Getting the list of files to be parsed.
+    // Getting the list of files to be parsed. 
     params.files = fs.readdirSync(params.entry);
 
     // Parse each file.

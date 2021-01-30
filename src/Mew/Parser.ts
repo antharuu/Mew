@@ -1,6 +1,7 @@
 const pretty = require("pretty")
 import {Htmlify} from "./Htmlify"
 import {BlockElement} from "./Logic/BlockElement";
+import {Variables} from "./Variables";
 
 const customAttributes = [
     {name: "class", symbol: "."},
@@ -27,7 +28,6 @@ export class Parser {
     private purgeLines(): void {
         let newLines: Array<string> = [];
         this.lines.forEach(line => {
-
             // Remove the line break symbol
             line = line.replace(/(\r\n|\n|\r)/gm, "")
 
@@ -48,46 +48,50 @@ export class Parser {
             ignoredLines: number = 0;
         lines.forEach(line => {
             const indent = line.length - line.trimStart().length;
-
             if (ignoredLines === 0) { // Starting a new block
                 ignoredLines++;
-                let words = line.trim().split(" ");
 
-                let attrib = {};
-                if (words[0].includes("(")) {
-                    attrib = this.getDefinedAttributesFrom(words)
-                    line = this.clearLineAttr(line);
-                }
-                attrib = {...attrib, ...this.getAttributesFrom(line)}
+                line = Variables.check(line)
 
-                let tag = line.trim().split(/(^[-_@|\w]+)/g)[1] ?? "div"
+                if (line.length > 0) {
+                    let words = line.trim().split(" ");
 
-                let content: string[] = line.trim().split(" ");
-                content.shift()
-
-                let checkedLines = 0;
-                let blockEnded = false;
-                const currBlock: string[] = [];
-
-                lines.forEach(l => {
-                    if (checkedLines > currentLine && !blockEnded) {
-                        const i = l.length - l.trimStart().length;
-                        if (i > indent) {
-                            currBlock.push(l);
-                            ignoredLines++;
-                        } else blockEnded = true;
+                    let attrib = {};
+                    if (words[0].includes("(")) {
+                        attrib = this.getDefinedAttributesFrom(words)
+                        line = this.clearLineAttr(line);
                     }
-                    checkedLines += 1;
-                })
+                    attrib = {...attrib, ...this.getAttributesFrom(line)}
 
-                const currentBlock = new BlockElement()
-                currentBlock.tag = tag
-                currentBlock.content = content.join(" ")
-                currentBlock.attributes = attrib
-                currentBlock.block = this.defineBlockOf(currBlock) // <- Recursive
-                currentBlock.line = line // <- Recursive
+                    let tag = line.trim().split(/(^[-_@|\w]+)/g)[1] ?? "div"
 
-                blocks.push(currentBlock)
+                    let content: string[] = line.trim().split(" ");
+                    content.shift()
+
+                    let checkedLines = 0;
+                    let blockEnded = false;
+                    const currBlock: string[] = [];
+
+                    lines.forEach(l => {
+                        if (checkedLines > currentLine && !blockEnded) {
+                            const i = l.length - l.trimStart().length;
+                            if (i > indent) {
+                                currBlock.push(l);
+                                ignoredLines++;
+                            } else blockEnded = true;
+                        }
+                        checkedLines += 1;
+                    })
+
+                    const currentBlock = new BlockElement()
+                    currentBlock.tag = tag
+                    currentBlock.content = content.join(" ")
+                    currentBlock.attributes = attrib
+                    currentBlock.block = this.defineBlockOf(currBlock) // <- Recursive
+                    currentBlock.line = line // <- Recursive
+
+                    blocks.push(currentBlock)
+                }
             }
 
             currentLine += 1;

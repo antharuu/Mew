@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import {Parser} from "./Parser";
 import {Preset} from "./Logic/Preset";
+import {Variables} from "./Variables";
 
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
 const ds = "/"; // Directory separator
@@ -15,6 +16,9 @@ export class ParseFiles {
         encode: BufferEncoding = "utf-8",   // File encode
         options: { variables: Object; presets: Preset[] }
     ) {
+        // @ts-ignore
+        Variables.Data = {...options.variables}
+
         // Parsing and saving the code
         const M = new Parser(fs.readFileSync(file, encode), options);
         const finalCode = M.getFinalCode();
