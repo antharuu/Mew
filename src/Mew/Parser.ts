@@ -6,7 +6,8 @@ import {Variables} from "./Variables";
 const customAttributes = [
     {name: "class", symbol: "."},
     {name: "id", symbol: "#"},
-    {name: "href", symbol: "@"}
+    {name: "href", symbol: "@"},
+    {name: "null", symbol: ":"}
 ]
 
 export class Parser {
@@ -104,10 +105,35 @@ export class Parser {
     clearLineAttr = (line: string): string => {
         line = line.trim()
         let start = line.indexOf("("),
-            end = 0,
+            end = this.getAttrPartLen(line) + start,
             block = -1,
             closed: boolean = false,
             pre: string = line.substr(0, start)
+        return pre + line.substr(end + 1);
+    };
+
+    /**
+     * returns the defined html attributes
+     * @param words
+     */
+    getDefinedAttributesFrom = (words: string[]): {} => {
+        let line: string = words.join(" ")
+        let regex = /(?<attr>[\w]+)="(?<value>[^"\\]*(?:\\[\w\W][^"\\]*)*)"/g;
+        let m: RegExpExecArray, results: Object = {};
+        while ((m = regex.exec(line)) !== null) {
+            if (m.index === regex.lastIndex) regex.lastIndex++;
+            // @ts-ignore
+            results[m[1]] = [m[2]];
+        }
+        return results
+    };
+
+    getAttrPartLen(line: string) {
+        let start = line.indexOf("("),
+            end = 0,
+            block = -1,
+            closed = false;
+
         for (let i = 0; i < line.length; i++) if (!closed) {
             const l = line.charAt(i);
             if (l === "(") block++;
@@ -119,24 +145,8 @@ export class Parser {
                 block--;
             }
         }
-        return pre + line.substr(end + 1);
-    };
-
-    /**
-     * returns the defined html attributes
-     * @param words
-     */
-    getDefinedAttributesFrom = (words: string[]): {} => {
-        let line: string = words.join(" ")
-        const regex = /(?<attr>[\w]+)="(?<value>[^"\\]*(?:\\[\w\W][^"\\]*)*)"/g;
-        let m: RegExpExecArray, results: Object = {};
-        while ((m = regex.exec(line)) !== null) {
-            if (m.index === regex.lastIndex) regex.lastIndex++;
-            // @ts-ignore
-            results[m[1]] = [m[2]];
-        }
-        return results
-    };
+        return end - start - 1;
+    }
 
     /**
      * Add quick attributes of the line
@@ -155,7 +165,8 @@ export class Parser {
         while ((m = regex.exec(line)) !== null) {
             if (m.index === regex.lastIndex) regex.lastIndex++;
             customAttributes.forEach(attr => {
-                results = this.addAttrFrom(results, m[1], attr.symbol, attr.name)
+                if (attr.name !== "null") results = this.addAttrFrom(results, m[1], attr.symbol, attr.name)
+                else results = this.addAttrNullFrom(results, m[1], attr.symbol, attr.name)
             })
         }
         return results
@@ -168,6 +179,18 @@ export class Parser {
             if (attrs[name] ?? false) attrs[name].push(attr)
             else { // @ts-ignore
                 attrs[name] = [attr]
+            }
+        }
+        return attrs;
+    }
+
+    addAttrNullFrom = (attrs: Object, attr: string, symbol: string, name: string) => {
+        if (attr.charAt(0) === symbol) {
+            attr = attr.substring(1)
+            // @ts-ignore
+            if (attrs[name] ?? false) attrs[name].push(attr)
+            else { // @ts-ignore
+                attrs[attr] = null
             }
         }
         return attrs;

@@ -20,7 +20,7 @@ Todo before 1.0:
 
 ### Now able to transform this:
 
-```jade
+```pug
 $myCss = "css/main.css"
 
 doctype
@@ -40,6 +40,7 @@ html
             img#catImage https://unsplash.com/photos/_Kbydj4K7W8 Cat super image!
         section#main.col-6
           h2 Enjoy the new MEW preprocessor!
+          button:disabled My super button
           p check here
             a {{github}} Mew on Github
             |  if you want
@@ -54,6 +55,7 @@ To this:
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/secondary.css">
     <title>Bonjour le monde!</title>
 </head>
 
@@ -65,7 +67,7 @@ To this:
             <div id="maSuperImage"><img id="catImage" src="https://unsplash.com/photos/_Kbydj4K7W8" alt="Cat super image!"></div>
         </div>
         <section id="main" class="col-6">
-            <h2>Enjoy the new MEW preprocessor!</h2>
+            <h2>Enjoy the new MEW preprocessor!</h2><button disabled>My super button</button>
             <p>check here<a href="https://github.com/antharuu/Mew">Mew on Github</a> if you want</p>
         </section>
     </div>

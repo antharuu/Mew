@@ -28,7 +28,7 @@ export const Presets = [
             tag: "a",
         }),
         (rBlock: BlockElement, oldBlock: BlockElement) => {
-            const c = oldBlock.content.split(" ");
+            const c: string[] = oldBlock.content.split(" ");
             if (c.length < 2) throw "A link needs at least 2 arguments"
             rBlock.attributes = oldBlock.attributes
             // @ts-ignore

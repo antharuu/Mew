@@ -22,7 +22,6 @@ export module Variables {
                     if (vValue.charAt(0) === '"') vValue = vValue.substr(1, vValue.length - 2)
                     // @ts-ignore
                     Data[vName] = vValue;
-                    console.log(Data)
                     str = ""
                 }
                 return str;
