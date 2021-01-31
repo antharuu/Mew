@@ -1,15 +1,10 @@
 import * as fs from "fs";
 import {ParseFiles} from "./Mew/ParseFiles"
-import {BlockElement} from "./Mew/Logic/BlockElement";
 import {Preset} from "./Mew/Logic/Preset";
 
 const ds = "/"; // Directory separator
 
-/**
- * @param options entry, output, encode
- * @constructor
- */
-const Mew = (options: Object) => {
+export function Transform(options: Object){
     let params: {
         files: string[];
         output: string;
@@ -42,16 +37,3 @@ const Mew = (options: Object) => {
         }
     ))
 }
-
-/**
- * Test implementation
- * TODO: remove this at the end
- **/
-Mew({
-    entry: "./tests",
-    presets: [],
-    variables: {
-        bonjour: "Bonjour le monde!",
-        github: "https://github.com/antharuu/Mew"
-    }
-})

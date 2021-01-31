@@ -1,10 +1,11 @@
 {
-  "name": "mew",
-  "version": "1.0.0",
-  "description": "html preprocessor",
-  "main": "src/mew.js",
+  "name": "mewjs",
+  "version": "0.1.5",
+  "description": "Mew is an HTML preprocessor, still under development with \"PUG\" as main inspiration. The goal is to make it more pleasant and easy to use. It is written in typescript.",
+  "main": "src/Mew.js",
   "scripts": {
-    "dev": "nodemon src/Mew.ts"
+    "dev": "nodemon src/Mew.ts",
+    "build": "nodemon src/main.js"
   },
   "author": "antharuu",
   "license": "MIT",

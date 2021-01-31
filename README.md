@@ -5,7 +5,8 @@
 Now usable and stable
 
 Todo before 1.0:
-- <span style="color:green">✓</span> A similar base to PUG 
+
+- <span style="color:green">✓</span> A similar base to PUG
 - <span style="color:green">✓</span> Add a preset system
 - <span style="color:green">✓</span> Custom presets
 - <span style="color:green">✓</span> Adding variables
@@ -18,7 +19,29 @@ Todo before 1.0:
 
 --- 
 
-### Now able to transform this:
+### Instalation
+
+```
+npm i mewjs
+```
+
+### Usage:
+
+```js
+const Mew = require("./Mew")
+
+Mew.Transform({
+    entry: "./tests", // Default: "./src"
+    output: "./public", // Default: "./dist"
+    variables: { // You can pass some variables here
+        hello: "Hello world"
+    }
+})
+```
+
+### Exemple:
+
+Now able to transform this
 
 ```pug
 $myCss = "css/main.css"
@@ -45,6 +68,7 @@ html
             a {{github}} Mew on Github
             |  if you want
 ```
+
 To this:
 
 ```html
@@ -52,7 +76,8 @@ To this:
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/secondary.css">
@@ -64,10 +89,12 @@ To this:
     <div class="row justify-contents-center">
         <div class="col-6">
             <h1>Hello world</h1>
-            <div id="maSuperImage"><img id="catImage" src="https://unsplash.com/photos/_Kbydj4K7W8" alt="Cat super image!"></div>
+            <div id="maSuperImage"><img id="catImage" src="https://unsplash.com/photos/_Kbydj4K7W8"
+                                        alt="Cat super image!"></div>
         </div>
         <section id="main" class="col-6">
-            <h2>Enjoy the new MEW preprocessor!</h2><button disabled>My super button</button>
+            <h2>Enjoy the new MEW preprocessor!</h2>
+            <button disabled>My super button</button>
             <p>check here<a href="https://github.com/antharuu/Mew">Mew on Github</a> if you want</p>
         </section>
     </div>
@@ -76,3 +103,5 @@ To this:
 
 </html>
 ```
+
+> Beware the syntax may still have to change partially on some things.

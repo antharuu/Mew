@@ -1,3 +1,8 @@
+### 0.1.5
+
+- The use can now be done from a simple javascript script.
+- The typescript is now compiled.
+
 ### 0.1.4
 
 - Variables can now be declared and modified directly in the Mew file.

@@ -1,7 +1,6 @@
 import {BlockElement} from "./Logic/BlockElement";
 import {Presets} from "./Presets";
 import {Preset} from "./Logic/Preset";
-import {Variables} from "./Variables";
 
 // noinspection JSUnusedLocalSymbols
 const {['log']: cl} = console; // Personal shortcut TODO: remove later
