@@ -19,7 +19,7 @@ var autoClosableTags = [
     "keygen", "menuitem"
 ];
 function checkPresets(block, userPresets) {
-    var presets = __spreadArrays(Presets_1.Presets, userPresets);
+    var presets = __spreadArrays(Presets_1.Presets, Presets_1.getPresetsFrom(userPresets));
     var rBlock = block;
     presets.forEach(function (preset) {
         var _a;

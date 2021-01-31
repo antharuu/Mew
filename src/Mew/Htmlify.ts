@@ -1,5 +1,5 @@
 import {BlockElement} from "./Logic/BlockElement";
-import {Presets} from "./Presets";
+import {getPresetsFrom, Presets} from "./Presets";
 import {Preset} from "./Logic/Preset";
 
 // noinspection JSUnusedLocalSymbols
@@ -13,7 +13,7 @@ const autoClosableTags = [
 ]
 
 function checkPresets(block: BlockElement, userPresets: Preset[]) {
-    let presets = [...Presets, ...userPresets]
+    let presets = [...Presets, ...getPresetsFrom(userPresets)]
     let rBlock: BlockElement = block;
     presets.forEach(preset => {
         if (block.tag === preset.tag) {

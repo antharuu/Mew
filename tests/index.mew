@@ -17,6 +17,8 @@ html
             img#catImage https://unsplash.com/photos/_Kbydj4K7W8 Cat super image!
         section#main.col-6
           h2 Enjoy the new MEW preprocessor!
+            fa b github
+            | on github too!
           button:disabled My super button
           p check here
             a {{github}} Mew on Github

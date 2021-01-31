@@ -2,18 +2,24 @@
   <img width="200" src="https://i.postimg.cc/XJZbJQRp/Logo.png" alt="Bubblegum icon">
 </p>
 
-Now usable and stable
-
 Todo before 1.0:
 
-- <span style="color:green">✓</span> A similar base to PUG
-- <span style="color:green">✓</span> Add a preset system
-- <span style="color:green">✓</span> Custom presets
-- <span style="color:green">✓</span> Adding variables
+- ✓ A similar base to PUG
+- ✓ Add a preset system
+- ✓ Custom presets
+- ✓ Adding variables
+    - ✓ String
+    - Number
+    - Array
+    - Objects
 - Adding mixins
 - Adding loops
+    - While
+    - For
 - Adding conditions
 - Adding includes
+    - Inlucdes
+    - Templates
 
 ...And probably a lot of other things
 
@@ -105,3 +111,59 @@ To this:
 ```
 
 > Beware the syntax may still have to change partially on some things.
+
+### Custom presets
+
+You can create custom presets to make your life easier later on.
+
+You just have to pass presets this way in the options.
+
+```js
+presets: [
+    {
+        tag: "fa",
+        element: {
+            tag: "i",
+            attributes: {
+                class: "fa-icons"
+            }
+        },
+        callback(newElement, oldElement) {
+            const oldContent = oldElement.content.split(" ");
+            let type = "s"
+            if (oldContent.length >= 2) {
+                type = oldContent[0]
+                oldContent.shift()
+            }
+            oldContent.join(" ")
+            newElement.attributes = {
+                ...newElement.attributes, class: [
+                    `fa${type}`,
+                    `fa-${oldContent}`
+                ]
+            }
+            return newElement; // Dont forget to return the new Element.
+        }
+    }
+]
+```
+
+It will transform
+
+```pug
+fa b github
+
+fa box-open
+```
+
+in
+
+```html
+<i class="fab fa-github"></i>
+
+<i class="fas fa-box-open"></i>
+```
+
+> Customization with presets is up to you, you have no limits.
+>
+> We also use presets for many tasks.

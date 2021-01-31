@@ -1,3 +1,9 @@
+### 0.1.6
+
+- Cleaning and improvement of the `package.json`.
+- Presets are now easy to use.
+- Adding a preset demo in the Readme.
+
 ### 0.1.5
 
 - The use can now be done from a simple javascript script.

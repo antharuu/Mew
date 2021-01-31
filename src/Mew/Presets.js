@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Presets = void 0;
+exports.Presets = exports.getPresetsFrom = void 0;
 var BlockElement_1 = require("./Logic/BlockElement");
 var Preset_1 = require("./Logic/Preset");
 var getAttributeBlockContent = function (attrName, rBlock, oldBlock) {
@@ -8,6 +8,16 @@ var getAttributeBlockContent = function (attrName, rBlock, oldBlock) {
     rBlock.attributes[attrName] = [oldBlock.content];
     return rBlock;
 };
+var getPresetsFrom = function (userPresets) {
+    var presets = [];
+    for (var _i = 0, userPresets_1 = userPresets; _i < userPresets_1.length; _i++) {
+        var preset = userPresets_1[_i];
+        // @ts-ignore
+        presets.push(new Preset_1.Preset(preset.tag, new BlockElement_1.BlockElement(preset.element), preset.callback));
+    }
+    return presets;
+};
+exports.getPresetsFrom = getPresetsFrom;
 exports.Presets = [
     new Preset_1.Preset("doctype", new BlockElement_1.BlockElement({ tag: "!DOCTYPE", attributes: { html: null } })),
     new Preset_1.Preset("charset", new BlockElement_1.BlockElement({ tag: "meta" }), function (rBlock, oldBlock) { return getAttributeBlockContent("charset", rBlock, oldBlock); }),

@@ -1,11 +1,27 @@
 {
   "name": "mewjs",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Mew is an HTML preprocessor, still under development with \"PUG\" as main inspiration. The goal is to make it more pleasant and easy to use. It is written in typescript.",
+  "keywords": [
+    "mew",
+    "html",
+    "pug",
+    "jade",
+    "preprocessor",
+    "typescript",
+    "js",
+    "ts",
+    "cat",
+    "simple"
+  ],
+  "homepage": "https://github.com/antharuu/Mew",
+  "readme": "https://github.com/antharuu/Mew",
+  "repository": "https://github.com/antharuu/Mew",
+  "bugs": "https://github.com/antharuu/Mew/issues",
   "main": "src/Mew.js",
   "scripts": {
-    "dev": "nodemon src/Mew.ts",
-    "build": "nodemon src/main.js"
+    "dev": "nodemon src/main.js",
+    "build": "node src/main.js"
   },
   "author": "antharuu",
   "license": "MIT",

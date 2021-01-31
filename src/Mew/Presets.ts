@@ -7,6 +7,16 @@ const getAttributeBlockContent = (attrName: string, rBlock: BlockElement, oldBlo
     return rBlock
 }
 
+export const getPresetsFrom = (userPresets: Object[]) => {
+    let presets: Preset[] = []
+
+    for (const preset of userPresets) {
+        // @ts-ignore
+        presets.push(new Preset(preset.tag, new BlockElement(preset.element), preset.callback))
+    }
+    return presets;
+}
+
 export const Presets = [
     new Preset(
         "doctype",
