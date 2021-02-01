@@ -2,13 +2,15 @@
   <img width="200" src="https://i.postimg.cc/XJZbJQRp/Logo.png" alt="Bubblegum icon">
 </p>
 
+#### Changelog: [Here](https://github.com/antharuu/Mew/blob/master/CHANGELOG.md)
+
 Todo before 1.0:
 
 - ✓ A similar base to PUG
 - ✓ Add a preset system
 - ✓ Custom presets
-- ✓ Adding variables
-    - ✓ String
+- Adding variables
+    - String
     - Number
     - Array
     - Objects
@@ -34,15 +36,32 @@ npm i mewjs
 ### Usage:
 
 ```js
-const Mew = require("./Mew")
+const Mew = require("../src/Mew")
 
-Mew.Transform({
-    entry: "./tests", // Default: "./src"
-    output: "./public", // Default: "./dist"
-    variables: { // You can pass some variables here
-        hello: "Hello world"
+Mew.Render()
+```
+
+OR
+
+```js
+const Mew = require("../src/Mew")
+
+Mew.RenderFile('./src/index')
+```
+
+OR
+
+```js
+const Mew = require("../src/Mew")
+
+Mew.Config = {
+    entry_file: "./src/index",
+    variables: {
+        hello: "Hello world from Mew! ♥"
     }
-})
+}
+
+Mew.Compile()
 ```
 
 ### Exemple:
@@ -145,7 +164,7 @@ presets: [
             return newElement; // Dont forget to return the new Element.
         }
     }
-]
+] // Todo: Mettre à jour avant de publier la 0.2
 ```
 
 It will transform

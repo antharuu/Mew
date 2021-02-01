@@ -1,0 +1,1 @@
+export const {['log']: cl} = console;

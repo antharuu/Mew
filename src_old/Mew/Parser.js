@@ -191,4 +191,3 @@ var Parser = /** @class */ (function () {
     return Parser;
 }());
 exports.Parser = Parser;
-//# sourceMappingURL=Parser.js.map

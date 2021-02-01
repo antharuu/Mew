@@ -1,7 +1,7 @@
 const Mew = require("./Mew")
 
 Mew.Transform({
-    entry: "./tests", // Default: "./src"
+    entry: "./tests", // Default: "./src_old"
     output: "./dist", // Default: "./dist"
     variables: {
         hello: "Hello world"

@@ -46,4 +46,3 @@ var ParseFiles = /** @class */ (function () {
     return ParseFiles;
 }());
 exports.ParseFiles = ParseFiles;
-//# sourceMappingURL=ParseFiles.js.map

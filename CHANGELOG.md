@@ -1,3 +1,12 @@
+### 0.2.0
+
+- Complete rewrite _(again)_, Clean this time.
+- The use has been further simplified.
+- Use of Interfaces, to make the code more readable and maintainable.
+- Renaming `entry` to `entry_file` in the configuration.
+- Renaming `output` to `output_folder` in the configuration.
+- Now uses the prism CDN for testing *(instead of js and css files)*.
+
 ### 0.1.6
 
 - Cleaning and improvement of the `package.json`.

@@ -41,7 +41,7 @@ exports.Presets = [
         var c = oldBlock.content.split(" ");
         rBlock.attributes = oldBlock.attributes;
         // @ts-ignore
-        rBlock.attributes["src"] = [c[0]];
+        rBlock.attributes["src_old"] = [c[0]];
         if (c.length >= 2) {
             c.shift();
             // @ts-ignore
@@ -68,4 +68,3 @@ exports.Presets = [
         return rBlock;
     })
 ];
-//# sourceMappingURL=Presets.js.map

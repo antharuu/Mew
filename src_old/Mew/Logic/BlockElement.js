@@ -38,4 +38,3 @@ var BlockElement = /** @class */ (function () {
     return BlockElement;
 }());
 exports.BlockElement = BlockElement;
-//# sourceMappingURL=BlockElement.js.map

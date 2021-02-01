@@ -13,4 +13,3 @@ var Preset = /** @class */ (function () {
     return Preset;
 }());
 exports.Preset = Preset;
-//# sourceMappingURL=Preset.js.map
