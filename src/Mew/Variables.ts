@@ -1,5 +1,7 @@
+import {DataType} from "./Types/DataType";
+
 export module Variables {
-    export let Data: Object = {}
+    export let Data: DataType = {}
 
     let Checkers = [
         { // Replace
@@ -14,13 +16,13 @@ export module Variables {
         { // Set or Change value
             callback: (str: string) => {
                 const regex = /\$([\w]+)[ ]*?([=])(.*)/
-                let m;
+                str = str.trim()
+                let m: RegExpExecArray;
                 while ((m = regex.exec(str)) !== null) {
                     if (m.index === regex.lastIndex) regex.lastIndex++;
                     let vName: string = m[1]
                     let vValue: string = m[3].trim()
                     if (vValue.charAt(0) === '"') vValue = vValue.substr(1, vValue.length - 2)
-                    // @ts-ignore
                     Data[vName] = vValue;
                     str = ""
                 }
@@ -30,9 +32,7 @@ export module Variables {
     ]
 
     export const check = (str: string) => {
-        Checkers.forEach(checker => {
-            str = checker.callback(str)
-        })
+        Checkers.forEach(checker => str = checker.callback(str))
         return str;
     };
 }

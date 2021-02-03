@@ -1,0 +1,1 @@
+export type CustomAttribute = { name: string, symbol: string }[]

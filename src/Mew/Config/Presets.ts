@@ -1,19 +1,14 @@
-import {BlockElement} from "./Logic/BlockElement";
-import {Preset} from "./Logic/Preset";
+import {BlockElement} from "../Logic/BlockElement";
+import {Preset} from "../Logic/Preset";
 
 const getAttributeBlockContent = (attrName: string, rBlock: BlockElement, oldBlock: BlockElement) => {
-    // @ts-ignore
     rBlock.attributes[attrName] = [oldBlock.content]
     return rBlock
 }
 
-export const getPresetsFrom = (userPresets: Object[]) => {
+export const getPresetsFrom = (userPresets: Preset[]) => {
     let presets: Preset[] = []
-
-    for (const preset of userPresets) {
-        // @ts-ignore
-        presets.push(new Preset(preset.tag, new BlockElement(preset.element), preset.callback))
-    }
+    for (const preset of userPresets) presets.push(new Preset(preset.tag, preset.output, preset.callback))
     return presets;
 }
 
@@ -41,7 +36,6 @@ export const Presets = [
             const c: string[] = oldBlock.content.split(" ");
             if (c.length < 2) throw "A link needs at least 2 arguments"
             rBlock.attributes = oldBlock.attributes
-            // @ts-ignore
             rBlock.attributes["href"] = [c[0]]
             c.shift()
             rBlock.content = c.join(" ")
@@ -56,11 +50,9 @@ export const Presets = [
         (rBlock: BlockElement, oldBlock: BlockElement) => {
             const c: string[] = oldBlock.content.split(" ");
             rBlock.attributes = oldBlock.attributes
-            // @ts-ignore
             rBlock.attributes["src_old"] = [c[0]]
             if (c.length >= 2) {
                 c.shift()
-                // @ts-ignore
                 rBlock.attributes["alt"] = [c.join(" ")]
             }
             return rBlock

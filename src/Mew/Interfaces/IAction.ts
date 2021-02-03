@@ -1,3 +1,5 @@
+import {BlockElement} from "../Logic/BlockElement";
+
 export interface IAction {
-    (newElement: Element, oldElement?: Element): Element;
+    (newElement: BlockElement, oldElement?: BlockElement): BlockElement;
 }

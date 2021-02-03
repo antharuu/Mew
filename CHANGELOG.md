@@ -1,11 +1,24 @@
 ### 0.2.0
 
+#### New features & changes
+
 - Complete rewrite _(again)_, Clean this time.
 - The use has been further simplified.
-- Use of Interfaces, to make the code more readable and maintainable.
 - Renaming `entry` to `entry_file` in the configuration.
 - Renaming `output` to `output_folder` in the configuration.
 - Now uses the prism CDN for testing *(instead of js and css files)*.
+- We can now have a configuration file named `mew.config.json` at the root of the project or 6 levels deeper.
+- The different configurations are superimposed and no longer replace each other.
+
+#### Refactor
+
+- Now all `@ts-ignore` has been removed.
+- The code is now well typed and organized.
+- Use of Interfaces, to make the code more readable and maintainable.
+
+#### Bugfixes
+
+- Variables can be correctly modified and no longer return to their original values.
 
 ### 0.1.6
 

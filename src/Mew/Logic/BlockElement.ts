@@ -1,42 +1,45 @@
+import {IElement} from "../Interfaces/IElement";
+import {Attributes} from "../Types/Attributes";
+
 export class BlockElement {
     tag: string = "div";
     content: string = "";
-    attributes: Object
+    attributes: Attributes
     block: BlockElement[]
     line: string
+    infos: IElement
 
-    constructor(options: Object = {}) {
+    constructor(elementOptions: IElement = {tag: "div"}) {
         let optionsExport: {
-            line: string;
             attributes: {};
             block: BlockElement[];
-            tag: string;
             content: string;
+            line: string;
+            tag: string;
         };
         optionsExport = {
-            tag: "div",
-            content: "",
             attributes: {},
             block: [],
+            content: "",
             line: "",
-            ...options
+            tag: "div",
+            ...elementOptions
         };
 
-        this.tag = optionsExport.tag;
-        this.content = optionsExport.content;
         this.attributes = optionsExport.attributes;
         this.block = optionsExport.block;
+        this.content = optionsExport.content;
+        this.infos = elementOptions;
         this.line = optionsExport.line;
+        this.tag = optionsExport.tag;
     }
 
     attrReplace(attr: string, searchString: string, replaceString: string) {
         let returned: string[] = []
-        // @ts-ignore
         this.attributes[attr].forEach(c => {
             c = c.replace(searchString, replaceString)
             returned.push(c)
-        })
-        // @ts-ignore
+        });
         this.attributes[attr] = returned;
     }
 }

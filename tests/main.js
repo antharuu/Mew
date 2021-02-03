@@ -7,6 +7,4 @@ Mew.Config = {
     }
 }
 
-let m = Mew.Compile()
-
-console.log(m)
+Mew.Compile()

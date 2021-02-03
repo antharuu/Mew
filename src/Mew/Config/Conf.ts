@@ -1,4 +1,4 @@
-import {IMewConf} from "./Interfaces/IMewConf";
+import {IMewConf} from "../Interfaces/IMewConf";
 
 /**
  * Default settings
@@ -9,5 +9,6 @@ export const DefaultMewConf: IMewConf = {
     entry_file: "./src/index",
     output_folder: "./dist",
     presets: [],
+    pretty: true,
     variables: {}
 }
