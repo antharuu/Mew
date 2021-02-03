@@ -9,7 +9,7 @@ Todo before 1.0:
 - ✓ A similar base to PUG
 - ✓ Add a preset system
 - ✓ Custom presets
-- Adding variables
+- ✓ Adding variables (not typed for now)
     - String
     - Number
     - Array
@@ -36,7 +36,7 @@ npm i mewjs
 ### Usage:
 
 ```js
-const Mew = require("../src/Mew")
+const Mew = require("mew")
 
 Mew.Render()
 ```
@@ -44,7 +44,7 @@ Mew.Render()
 OR
 
 ```js
-const Mew = require("../src/Mew")
+const Mew = require("mew")
 
 Mew.RenderFile('./src/index')
 ```
@@ -52,7 +52,7 @@ Mew.RenderFile('./src/index')
 OR
 
 ```js
-const Mew = require("../src/Mew")
+const Mew = require("mew")
 
 Mew.Config = {
     entry_file: "./src/index",
@@ -164,7 +164,7 @@ presets: [
             return newElement; // Dont forget to return the new Element.
         }
     }
-] // Todo: Mettre à jour avant de publier la 0.2
+]
 ```
 
 It will transform
