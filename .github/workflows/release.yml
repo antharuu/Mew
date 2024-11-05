@@ -29,7 +29,7 @@ jobs:
             arch: x64
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install Rust
         uses: actions-rs/toolchain@v1
@@ -51,19 +51,19 @@ jobs:
           tar -czf "mew-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz" -C target/release $binary_name
 
       - name: Upload Binary
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: mew-${{ matrix.platform }}-${{ matrix.arch }}
           path: mew-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz
+          retention-days: 1
 
   publish:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
 
       - name: Create Release
         id: create_release
@@ -87,7 +87,7 @@ jobs:
           done
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
