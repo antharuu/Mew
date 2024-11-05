@@ -1,6 +1,6 @@
 {
   "name": "@antharuu/mew",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lightweight CSS preprocessor with elegant BEM support",
   "main": "index.js",
   "bin": {
