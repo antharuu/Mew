@@ -126,7 +126,7 @@ button {
 $nav-bg: #ffffff;
 $nav-spacing: 16px;
 
-// No dot needed for the main block
+// No dot needed
 nav {
   background: $nav-bg;
   padding: $nav-spacing;
