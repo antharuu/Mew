@@ -25,6 +25,9 @@ A modern CSS preprocessor crafted in Rust, featuring intuitive nesting, variable
   <a href="https://github.com/antharuu/Mew/stargazers">
     <img src="https://img.shields.io/github/stars/antharuu/Mew" alt="Stars">
   </a>
+  <a href="https://www.npmjs.com/package/@antharuu/mew">
+    <img src="https://img.shields.io/npm/v/@antharuu/mew" alt="NPM Version">
+  </a>
 </p>
 
 ## Features
@@ -37,7 +40,17 @@ A modern CSS preprocessor crafted in Rust, featuring intuitive nesting, variable
 
 ## Installation
 
-Currently, Mew needs to be built from source:
+### Via NPM (Recommended)
+
+The easiest way to install Mew is through npm:
+
+```bash
+npm install -g @antharuu/mew
+```
+
+### From Source
+
+Alternatively, you can build from source:
 
 ```bash
 # Clone the repository
@@ -65,13 +78,13 @@ source ~/.bashrc
 Process a single file:
 
 ```bash
-./target/release/mew input.mew
+mew input.mew
 ```
 
 Process a directory:
 
 ```bash
-./target/release/mew ./styles
+mew ./styles
 ```
 
 ## Syntax
