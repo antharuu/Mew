@@ -3,7 +3,7 @@
 $card-spacing: 20px;
 $card-border: #e1e1e1;
 
-.card {
+card {
   padding: $card-spacing;
   border: 1px solid $card-border;
 

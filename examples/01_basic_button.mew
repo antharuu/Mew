@@ -3,7 +3,7 @@
 $button-color: #3498db;
 $button-padding: 12px;
 
-.button {
+button {
   // Basic properties with variables
   background-color: $button-color;
   padding: $button-padding;

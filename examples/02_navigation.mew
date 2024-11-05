@@ -3,7 +3,7 @@
 $nav-bg: #ffffff;
 $nav-spacing: 16px;
 
-.nav {
+nav {
   background: $nav-bg;
   padding: $nav-spacing;
 

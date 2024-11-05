@@ -5,7 +5,7 @@ $input-border: #dddddd;
 $error-color: #e74c3c;
 $success-color: #27ae60;
 
-.form {
+form {
   &group {
     margin-bottom: 20px;
   }
