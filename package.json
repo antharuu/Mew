@@ -7,8 +7,8 @@
     "mew": "cli.js"
   },
   "scripts": {
-    "build": "cargo build --release",
-    "postinstall": "node install.js"
+    "postinstall": "node install.js",
+    "pack-local": "npm pack"
   },
   "repository": {
     "type": "git",
@@ -28,18 +28,9 @@
   },
   "homepage": "https://github.com/antharuu/Mew#readme",
   "dependencies": {
-    "@mapbox/node-pre-gyp": "^1.0.11",
-    "binary-install": "^1.1.0"
+    "binary-install": "^1.1.0",
+    "tar": "^6.2.0"
   },
-  "cpu": [
-    "x64",
-    "arm64"
-  ],
-  "os": [
-    "darwin",
-    "linux",
-    "win32"
-  ],
   "files": [
     "cli.js",
     "index.js",
