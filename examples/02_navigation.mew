@@ -1,0 +1,35 @@
+// 02_navigation.mew
+
+$nav-bg: #ffffff;
+$nav-spacing: 16px;
+
+.nav {
+  background: $nav-bg;
+  padding: $nav-spacing;
+
+  // BEM element for list
+  &list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  // BEM element for items
+  &item {
+    list-style: none;
+    padding: $nav-spacing / 2;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+
+    &:active {
+      background: #eeeeee;
+    }
+  }
+
+  // Responsive modifier
+  @mobile {
+    padding: $nav-spacing / 2;
+  }
+}

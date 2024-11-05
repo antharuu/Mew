@@ -1,0 +1,42 @@
+// 04_form.mew
+
+$input-height: 40px;
+$input-border: #dddddd;
+$error-color: #e74c3c;
+$success-color: #27ae60;
+
+.form {
+  &group {
+    margin-bottom: 20px;
+  }
+
+  &label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  &input {
+    height: $input-height;
+    width: 100%;
+    border: 1px solid $input-border;
+    padding: 0 12px;
+
+    &:focus {
+      border-color: #3498db;
+    }
+
+    @error {
+    border-color: $error-color;
+
+    &message {
+      color: $error-color;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  }
+
+    @success {
+      border-color: $success-color;
+    }
+  }
+}

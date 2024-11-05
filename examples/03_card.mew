@@ -1,0 +1,40 @@
+// 03_card.mew
+
+$card-spacing: 20px;
+$card-border: #e1e1e1;
+
+.card {
+  padding: $card-spacing;
+  border: 1px solid $card-border;
+
+  &header {
+    padding-bottom: $card-spacing / 2;
+    border-bottom: 1px solid $card-border;
+  }
+
+  &title {
+    font-size: 18px;
+    margin: 0 0 $card-spacing / 4;
+  }
+
+  &content {
+    padding: $card-spacing 0;
+  }
+
+  &footer {
+    padding-top: $card-spacing / 2;
+    border-top: 1px solid $card-border;
+  }
+
+  @featured {
+    border: 2px solid #3498db;
+  }
+
+  @compact {
+    padding: $card-spacing / 2;
+
+    &content {
+      padding: $card-spacing / 2 0;
+    }
+  }
+}

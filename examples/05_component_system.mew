@@ -1,0 +1,57 @@
+// 05_component_system.mew
+
+$base-spacing: 8px;
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+
+.component {
+  padding: $base-spacing * 2;
+
+  &header {
+    margin-bottom: $base-spacing * 2;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  &content {
+    padding: $base-spacing * 2;
+    background: #ffffff;
+  }
+
+  &footer {
+    margin-top: $base-spacing * 2;
+    padding-top: $base-spacing;
+    border-top: 1px solid #eeeeee;
+  }
+
+  @primary {
+    border: 1px solid $primary-color;
+
+    &header {
+      border-color: $primary-color;
+    }
+  }
+
+  @secondary {
+    border: 1px solid $secondary-color;
+
+    &header {
+      border-color: $secondary-color;
+    }
+  }
+
+  @compact {
+    padding: $base-spacing;
+
+    &header {
+      margin-bottom: $base-spacing;
+    }
+
+    &content {
+      padding: $base-spacing;
+    }
+
+    &footer {
+      margin-top: $base-spacing;
+    }
+  }
+}

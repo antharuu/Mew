@@ -1,0 +1,23 @@
+// 01_basic_button.mew
+
+$button-color: #3498db;
+$button-padding: 12px;
+
+.button {
+  // Basic properties with variables
+  background-color: $button-color;
+  padding: $button-padding;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+
+  // Simple pseudo-class
+  &:hover {
+    background-color: #2980b9;
+  }
+
+  // Basic BEM modifier
+  @primary {
+    background-color: #2ecc71;
+  }
+}
