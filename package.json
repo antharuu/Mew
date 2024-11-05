@@ -1,0 +1,50 @@
+{
+  "name": "@antharuu/mew",
+  "version": "0.1.0",
+  "description": "A lightweight CSS preprocessor with elegant BEM support",
+  "main": "index.js",
+  "bin": {
+    "mew": "cli.js"
+  },
+  "scripts": {
+    "build": "cargo build --release",
+    "postinstall": "node install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antharuu/Mew.git"
+  },
+  "keywords": [
+    "css",
+    "preprocessor",
+    "bem",
+    "web",
+    "rust"
+  ],
+  "author": "Antharuu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antharuu/Mew/issues"
+  },
+  "homepage": "https://github.com/antharuu/Mew#readme",
+  "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.11",
+    "binary-install": "^1.1.0"
+  },
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "files": [
+    "cli.js",
+    "index.js",
+    "install.js",
+    "README.md",
+    "LICENSE"
+  ]
+}
