@@ -5,7 +5,11 @@
 <h1 align="center">Mew</h1>
 
 <p align="center">
-  A lightweight CSS preprocessor with BEM methodology support, written in Rust 🦀
+🎨 Mew - A lightweight CSS preprocessor with elegant BEM support
+</p>
+
+<p align="center">
+A modern CSS preprocessor crafted in Rust, featuring intuitive nesting, variables, and seamless BEM integration. Write cleaner, more maintainable CSS with a minimalist yet powerful syntax.
 </p>
 
 <p align="center">
