@@ -1,9 +1,11 @@
-mod token;
-mod error;
-mod cursor;
-mod traits;
-mod mew_lexer;
-
-pub use token::TokenType;
+pub mod cursor;
+pub mod error;
+pub mod token;
+pub mod traits;
+pub mod lexer;
+pub mod handlers;
+pub mod utils;
+pub use token::{Token, TokenType};
+pub use error::Result;
 pub use traits::Lexer;
-pub use mew_lexer::MewLexer;
+pub use lexer::MewLexer;

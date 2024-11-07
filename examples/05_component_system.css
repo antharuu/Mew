@@ -3,4 +3,57 @@
  * VariableDeclaration("base-spacing", "8px")
  * VariableDeclaration("primary-color", "#3498db")
  * VariableDeclaration("secondary-color", "#2ecc71")
+ * Selector("component")
+ * BraceOpen
+ * Property("padding", "$base-spacing * 2")
+ * Selector("&header")
+ * BraceOpen
+ * Property("margin-bottom", "$base-spacing * 2")
+ * Property("border-bottom", "1px solid #eeeeee")
+ * BraceClose
+ * Selector("&content")
+ * BraceOpen
+ * Property("padding", "$base-spacing * 2")
+ * Property("background", "#ffffff")
+ * BraceClose
+ * Selector("&footer")
+ * BraceOpen
+ * Property("margin-top", "$base-spacing * 2")
+ * Property("padding-top", "$base-spacing")
+ * Property("border-top", "1px solid #eeeeee")
+ * BraceClose
+ * BemModifier("primary")
+ * BraceOpen
+ * Property("border", "1px solid $primary-color")
+ * Selector("&header")
+ * BraceOpen
+ * Property("border-color", "$primary-color")
+ * BraceClose
+ * BraceClose
+ * BemModifier("secondary")
+ * BraceOpen
+ * Property("border", "1px solid $secondary-color")
+ * Selector("&header")
+ * BraceOpen
+ * Property("border-color", "$secondary-color")
+ * BraceClose
+ * BraceClose
+ * BemModifier("compact")
+ * BraceOpen
+ * Property("padding", "$base-spacing")
+ * Selector("&header")
+ * BraceOpen
+ * Property("margin-bottom", "$base-spacing")
+ * BraceClose
+ * Selector("&content")
+ * BraceOpen
+ * Property("padding", "$base-spacing")
+ * BraceClose
+ * Selector("&footer")
+ * BraceOpen
+ * Property("margin-top", "$base-spacing")
+ * BraceClose
+ * BraceClose
+ * BraceClose
+ * EOF
  */

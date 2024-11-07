@@ -4,7 +4,7 @@ $base-spacing: 8px;
 $primary-color: #3498db;
 $secondary-color: #2ecc71;
 
-.component {
+component {
   padding: $base-spacing * 2;
 
   &header {
