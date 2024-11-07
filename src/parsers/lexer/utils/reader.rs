@@ -27,7 +27,7 @@ where
         self.skip_whitespace();
         let value = self
             .cursor
-            .eat_while(|c| c != '\n' && c != '}')
+            .eat_while(|c| c != ';' && c != '\n' && c != '}')
             .trim()
             .to_string();
         if value.is_empty() {
@@ -35,6 +35,9 @@ where
                 message: "Expected value".to_string(),
                 position: self.cursor.position(),
             });
+        }
+        if let Some(';') = self.cursor.peek().copied() {
+            self.cursor.advance();
         }
         Ok(value)
     }
