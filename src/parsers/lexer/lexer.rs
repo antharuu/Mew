@@ -4,7 +4,7 @@
 use super::{
     cursor::Cursor,
     error::{LexerError, Result},
-    token::{Token, TokenType},
+    token::{Token, TokenType, Span},
     traits::Lexer,
     handlers::{
         variable::VariableHandler,
@@ -38,7 +38,7 @@ impl<'source> MewLexer<'source> {
         let position = self.cursor.position();
         Ok(Token::new(
             TokenType::EOF,
-            crate::parsers::lexer::token::Span::new(position, position),
+            Span::new(position, position),
         ))
     }
 

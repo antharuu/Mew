@@ -22,11 +22,11 @@ impl Token {
         Self { token_type, span }
     }
 
+    /// Returns the location of the token for error reporting
     pub fn location(&self) -> String {
         format!(
             "line {}, column {}",
-            self.span.start.line,
-            self.span.start.column
+            self.span.start.line, self.span.start.column
         )
     }
 }

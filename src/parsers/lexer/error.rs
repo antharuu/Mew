@@ -77,5 +77,20 @@ mod tests {
             err.to_string(),
             "Unexpected character '@' at line 1, column 1"
         );
+
+        let err = LexerError::UnexpectedEOF { position: pos };
+        assert_eq!(
+            err.to_string(),
+            "Unexpected end of file at line 1, column 1"
+        );
+
+        let err = LexerError::InvalidIdentifier {
+            found: "123abc".to_string(),
+            position: pos,
+        };
+        assert_eq!(
+            err.to_string(),
+            "Invalid identifier '123abc' at line 1, column 1"
+        );
     }
 }

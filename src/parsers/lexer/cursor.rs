@@ -4,39 +4,34 @@
 use std::str::Chars;
 use std::iter::Peekable;
 use super::token::Position;
-use crate::parsers::lexer::error::{LexerError, Result}; // Import LexerError and Result
+use crate::parsers::lexer::error::{LexerError, Result};
 
 #[derive(Clone)]
 pub struct Cursor<'source> {
     input: Peekable<Chars<'source>>,
     position: Position,
-    source: &'source str,
 }
 
 impl<'source> Cursor<'source> {
+    /// Creates a new cursor from the input string
     pub fn new(input: &'source str) -> Self {
         Self {
             input: input.chars().peekable(),
             position: Position::new(1, 1, 0),
-            source: input,
         }
     }
 
+    /// Returns the current position in the input
     pub fn position(&self) -> Position {
         self.position
     }
 
+    /// Peeks at the next character without consuming it
     pub fn peek(&mut self) -> Option<&char> {
         self.input.peek()
     }
 
-    /// Peeks the second character ahead without consuming any input
-    pub fn peek_second(&mut self) -> Option<char> {
-        let mut iter = self.input.clone();
-        iter.next(); // Skip the first character
-        iter.next()
-    }
-
+    /// Advances the cursor and returns the next character
     pub fn advance(&mut self) -> Option<char> {
         let c = self.input.next();
         if let Some(c) = c {
@@ -45,6 +40,7 @@ impl<'source> Cursor<'source> {
         c
     }
 
+    /// Consumes characters while the predicate returns true
     pub fn eat_while<F>(&mut self, mut predicate: F) -> String
     where
         F: FnMut(char) -> bool,
@@ -59,18 +55,17 @@ impl<'source> Cursor<'source> {
         result
     }
 
+    /// Skips over whitespace characters
     pub fn skip_whitespace(&mut self) {
         self.eat_while(char::is_whitespace);
     }
 
+    /// Checks if the cursor has reached the end of the input
     pub fn is_eof(&mut self) -> bool {
         self.peek().is_none()
     }
 
-    pub fn get_source(&self) -> &str {
-        self.source
-    }
-
+    /// Expects the next character to be the specified one
     pub fn expect(&mut self, expected: char) -> Result<()> {
         match self.peek().copied() {
             Some(c) if c == expected => {
@@ -88,6 +83,7 @@ impl<'source> Cursor<'source> {
         }
     }
 
+    /// Reads a value until a terminator character is encountered
     pub fn read_value(&mut self) -> Result<String> {
         self.skip_whitespace();
         let value = self

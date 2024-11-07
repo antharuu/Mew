@@ -15,7 +15,7 @@ impl VariableHandler {
     }
 
     pub fn handle(&mut self, cursor: &mut Cursor) -> Result<Token> {
-        let start = cursor.position(); // Use cursor's position method
+        let start = cursor.position();
         cursor.advance(); // Skip '$'
         let name = cursor.eat_while(|c| c.is_alphanumeric() || c == '_' || c == '-');
         if name.is_empty() {

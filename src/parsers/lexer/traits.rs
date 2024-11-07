@@ -1,30 +1,13 @@
-use crate::parsers::lexer::{Token, Result};
+use crate::parsers::lexer::{Token, Result, token::Span, token::Position};
 
 pub trait Lexer {
     fn next_token(&mut self) -> Result<Token>;
 }
 
-pub trait LexerExt: Lexer {
-    fn collect_tokens(&mut self) -> Result<Vec<Token>> {
-        let mut tokens = Vec::new();
-        loop {
-            let token = self.next_token()?;
-            let is_eof = matches!(token.token_type, crate::parsers::lexer::TokenType::EOF);
-            tokens.push(token);
-            if is_eof {
-                break;
-            }
-        }
-        Ok(tokens)
-    }
-}
-
-impl<T: Lexer> LexerExt for T {}
-
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::parsers::lexer::{TokenType, token::{Span, Position}};
+    use crate::parsers::lexer::TokenType;
 
     struct MockLexer {
         tokens: Vec<TokenType>,
@@ -51,13 +34,13 @@ mod tests {
             self.current += 1;
 
             let start = Position::new(1, self.current, self.current - 1);
-            let end = Position::new(1, self.current + 1, self.current);
+            let end = Position::new(1, self.current, self.current);
             Ok(Token::new(token_type, Span::new(start, end)))
         }
     }
 
     #[test]
-    fn test_collect_tokens() {
+    fn test_mock_lexer() {
         let tokens = vec![
             TokenType::Selector("test".to_string()),
             TokenType::BraceOpen,
@@ -65,8 +48,13 @@ mod tests {
         ];
         let mut lexer = MockLexer::new(tokens);
 
-        let collected = lexer.collect_tokens().unwrap();
-        assert_eq!(collected.len(), 4); // 3 tokens + EOF
-        assert!(matches!(collected[3].token_type, TokenType::EOF));
+        let mut collected = Vec::new();
+        while let Ok(token) = lexer.next_token() {
+            if matches!(token.token_type, TokenType::EOF) {
+                break;
+            }
+            collected.push(token);
+        }
+        assert_eq!(collected.len(), 3);
     }
 }
