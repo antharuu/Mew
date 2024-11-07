@@ -1,1 +1,45 @@
-CSS output
+/* Tokens:
+ * Comment(" 04_form.mew\r")
+ * VariableDeclaration("input-height", "40px")
+ * VariableDeclaration("input-border", "#dddddd")
+ * VariableDeclaration("error-color", "#e74c3c")
+ * VariableDeclaration("success-color", "#27ae60")
+ * Selector("form")
+ * BraceOpen
+ * Selector("&group")
+ * BraceOpen
+ * Property("margin-bottom", "20px")
+ * BraceClose
+ * Selector("&label")
+ * BraceOpen
+ * Property("display", "block")
+ * Property("margin-bottom", "8px")
+ * BraceClose
+ * Selector("&input")
+ * BraceOpen
+ * Property("height", "$input-height")
+ * Property("width", "100%")
+ * Property("border", "1px solid $input-border")
+ * Property("padding", "0 12px")
+ * PseudoClass("focus")
+ * BraceOpen
+ * Property("border-color", "#3498db")
+ * BraceClose
+ * BemModifier("error")
+ * BraceOpen
+ * Property("border-color", "$error-color")
+ * Selector("&message")
+ * BraceOpen
+ * Property("color", "$error-color")
+ * Property("font-size", "14px")
+ * Property("margin-top", "4px")
+ * BraceClose
+ * BraceClose
+ * BemModifier("success")
+ * BraceOpen
+ * Property("border-color", "$success-color")
+ * BraceClose
+ * BraceClose
+ * BraceClose
+ * EOF
+ */

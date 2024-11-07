@@ -1,1 +1,37 @@
-CSS output
+/* Tokens:
+ * Comment(" 02_navigation.mew\r")
+ * VariableDeclaration("nav-bg", "#ffffff")
+ * VariableDeclaration("nav-spacing", "16px")
+ * Selector("nav")
+ * BraceOpen
+ * Property("background", "$nav-bg")
+ * Property("padding", "$nav-spacing")
+ * Comment(" BEM element for list\r")
+ * Selector("&list")
+ * BraceOpen
+ * Property("display", "flex")
+ * Property("margin", "0")
+ * Property("padding", "0")
+ * BraceClose
+ * Comment(" BEM element for items\r")
+ * Selector("&item")
+ * BraceOpen
+ * Property("list-style", "none")
+ * Property("padding", "$nav-spacing / 2")
+ * PseudoClass("hover")
+ * BraceOpen
+ * Property("background", "#f5f5f5")
+ * BraceClose
+ * PseudoClass("active")
+ * BraceOpen
+ * Property("background", "#eeeeee")
+ * BraceClose
+ * BraceClose
+ * Comment(" Responsive modifier\r")
+ * BemModifier("mobile")
+ * BraceOpen
+ * Property("padding", "$nav-spacing / 2")
+ * BraceClose
+ * BraceClose
+ * EOF
+ */
