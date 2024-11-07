@@ -1,4 +1,6 @@
-use crate::parsers::lexer::{Token, Result, token::Span, token::Position};
+// src/parsers/lexer/traits.rs
+
+use crate::parsers::lexer::{Token, Result};
 
 pub trait Lexer {
     fn next_token(&mut self) -> Result<Token>;
@@ -6,6 +8,7 @@ pub trait Lexer {
 
 #[cfg(test)]
 mod tests {
+    use crate::parsers::lexer::token::{Position, Span};
     use super::*;
     use crate::parsers::lexer::TokenType;
 

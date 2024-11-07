@@ -1,3 +1,5 @@
+// src/parsers/lexer/token.rs
+
 #[derive(Debug, PartialEq, Clone)]
 pub enum TokenType {
     VariableDeclaration(String, String),  // ($name, value)

@@ -1,10 +1,9 @@
-// Variable handler
-//
-// Handles variable declarations like `$name: value;`.
+// src/parsers/lexer/handlers/variable.rs
+
 use crate::parsers::lexer::{
-    token::{Token, TokenType, Span},
-    error::{LexerError, Result},
     cursor::Cursor,
+    error::{LexerError, Result},
+    token::{Span, Token, TokenType},
 };
 
 pub struct VariableHandler;
@@ -15,7 +14,7 @@ impl VariableHandler {
     }
 
     pub fn handle(&mut self, cursor: &mut Cursor) -> Result<Token> {
-        let start = cursor.position();
+        let start = cursor.position(); // Use cursor's position method
         cursor.advance(); // Skip '$'
         let name = cursor.eat_while(|c| c.is_alphanumeric() || c == '_' || c == '-');
         if name.is_empty() {

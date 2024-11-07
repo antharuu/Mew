@@ -14,13 +14,6 @@ pub enum LexerError {
         found: char,
         position: Position,
     },
-    UnexpectedEOF {
-        position: Position,
-    },
-    InvalidIdentifier {
-        found: String,
-        position: Position,
-    },
 }
 
 impl fmt::Display for LexerError {
@@ -34,16 +27,6 @@ impl fmt::Display for LexerError {
             Self::UnexpectedChar { found, position } => write!(
                 f,
                 "Unexpected character '{}' at line {}, column {}",
-                found, position.line, position.column
-            ),
-            Self::UnexpectedEOF { position } => write!(
-                f,
-                "Unexpected end of file at line {}, column {}",
-                position.line, position.column
-            ),
-            Self::InvalidIdentifier { found, position } => write!(
-                f,
-                "Invalid identifier '{}' at line {}, column {}",
                 found, position.line, position.column
             ),
         }
@@ -76,21 +59,6 @@ mod tests {
         assert_eq!(
             err.to_string(),
             "Unexpected character '@' at line 1, column 1"
-        );
-
-        let err = LexerError::UnexpectedEOF { position: pos };
-        assert_eq!(
-            err.to_string(),
-            "Unexpected end of file at line 1, column 1"
-        );
-
-        let err = LexerError::InvalidIdentifier {
-            found: "123abc".to_string(),
-            position: pos,
-        };
-        assert_eq!(
-            err.to_string(),
-            "Invalid identifier '123abc' at line 1, column 1"
         );
     }
 }

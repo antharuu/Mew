@@ -5,4 +5,3 @@ pub mod bem;
 pub mod comment;
 pub mod pseudo;
 pub mod brace;
-pub mod base;

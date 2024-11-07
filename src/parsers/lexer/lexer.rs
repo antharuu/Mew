@@ -1,20 +1,19 @@
-// MewLexer
-//
-// The main lexer for the Mew language.
+// src/parsers/lexer/lexer.rs
+
 use super::{
     cursor::Cursor,
     error::{LexerError, Result},
-    token::{Token, TokenType, Span},
-    traits::Lexer,
     handlers::{
-        variable::VariableHandler,
-        selector::SelectorHandler,
-        property::PropertyHandler,
         bem::BemHandler,
-        comment::CommentHandler,
-        pseudo::PseudoHandler,
         brace::BraceHandler,
+        comment::CommentHandler,
+        property::PropertyHandler,
+        pseudo::PseudoHandler,
+        selector::SelectorHandler,
+        variable::VariableHandler,
     },
+    token::{Span, Token, TokenType},
+    traits::Lexer,
 };
 
 /// The main lexer for the Mew language.
