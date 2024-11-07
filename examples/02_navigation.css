@@ -1,19 +1,19 @@
 /* Tokens:
- * Comment(" 02_navigation.mew\r")
+ * Comment("02_navigation.mew")
  * VariableDeclaration("nav-bg", "#ffffff")
  * VariableDeclaration("nav-spacing", "16px")
  * Selector("nav")
  * BraceOpen
  * Property("background", "$nav-bg")
  * Property("padding", "$nav-spacing")
- * Comment(" BEM element for list\r")
+ * Comment("BEM element for list")
  * Selector("&list")
  * BraceOpen
  * Property("display", "flex")
  * Property("margin", "0")
  * Property("padding", "0")
  * BraceClose
- * Comment(" BEM element for items\r")
+ * Comment("BEM element for items")
  * Selector("&item")
  * BraceOpen
  * Property("list-style", "none")
@@ -27,7 +27,7 @@
  * Property("background", "#eeeeee")
  * BraceClose
  * BraceClose
- * Comment(" Responsive modifier\r")
+ * Comment("Responsive modifier")
  * BemModifier("mobile")
  * BraceOpen
  * Property("padding", "$nav-spacing / 2")

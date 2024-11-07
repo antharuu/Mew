@@ -1,21 +1,21 @@
 /* Tokens:
- * Comment(" 01_basic_button.mew\r")
+ * Comment("01_basic_button.mew")
  * VariableDeclaration("button-color", "#3498db")
  * VariableDeclaration("button-padding", "12px")
  * Selector("button")
  * BraceOpen
- * Comment(" Basic properties with variables\r")
+ * Comment("Basic properties with variables")
  * Property("background-color", "$button-color")
  * Property("padding", "$button-padding")
  * Property("color", "#ffffff")
  * Property("border", "none")
  * Property("cursor", "pointer")
- * Comment(" Simple pseudo-class\r")
+ * Comment("Simple pseudo-class")
  * PseudoClass("hover")
  * BraceOpen
  * Property("background-color", "#2980b9")
  * BraceClose
- * Comment(" Basic BEM modifier\r")
+ * Comment("Basic BEM modifier")
  * BemModifier("primary")
  * BraceOpen
  * Property("background-color", "#2ecc71")

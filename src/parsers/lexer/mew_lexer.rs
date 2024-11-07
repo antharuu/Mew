@@ -96,6 +96,24 @@ impl<'a> MewLexer<'a> {
             span: Span { start, end },
         })
     }
+
+    fn read_comment(&mut self) -> String {
+        self.cursor.advance(); // Skip first /
+        self.cursor.advance(); // Skip second /
+
+        // Skip leading whitespace after //
+        while let Some(&c) = self.cursor.peek() {
+            if !c.is_whitespace() {
+                break;
+            }
+            self.cursor.advance();
+        }
+
+        // Read until newline and trim trailing whitespace and \r
+        self.cursor.eat_while(|c| c != '\n')
+            .trim_end()
+            .to_string()
+    }
 }
 
 impl<'a> Lexer for MewLexer<'a> {
@@ -194,9 +212,7 @@ impl<'a> Lexer for MewLexer<'a> {
                     })
                 }
                 '/' if matches!(self.cursor.peek(), Some(&'/')) => {
-                    self.cursor.advance(); // Skip first /
-                    self.cursor.advance(); // Skip second /
-                    let comment = self.cursor.eat_while(|c| c != '\n');
+                    let comment = self.read_comment();
                     Ok(Token {
                         token_type: TokenType::Comment(comment),
                         span: Span { start, end: self.cursor.position() },
@@ -229,6 +245,30 @@ impl<'a> Lexer for MewLexer<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_comment_handling() {
+        let mut lexer = MewLexer::new("// Simple comment\r\n");
+        let token = lexer.next_token().unwrap();
+        match &token.token_type {
+            TokenType::Comment(content) => {
+                assert_eq!(content, "Simple comment");
+            }
+            _ => panic!("Expected Comment token"),
+        }
+    }
+
+    #[test]
+    fn test_comment_with_leading_spaces() {
+        let mut lexer = MewLexer::new("//    Indented comment   \r\n");
+        let token = lexer.next_token().unwrap();
+        match &token.token_type {
+            TokenType::Comment(content) => {
+                assert_eq!(content, "Indented comment");
+            }
+            _ => panic!("Expected Comment token"),
+        }
+    }
 
     #[test]
     fn test_variable_declaration() {
